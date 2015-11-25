@@ -28,7 +28,7 @@ function Emoji(xPos, yPos, emoji_type){
 	//Define a fixture
 	var fd = new box2d.b2FixtureDef();
 	fd.shape = new box2d.b2CircleShape();
-	fd.shape.m_radius = scaleToWorld(35);
+	fd.shape.m_radius = scaleToWorld(emojiSize/2);
 
 	fd.density = 1.0;
 	fd.friction = 0.5;
@@ -123,7 +123,7 @@ function Emoji(xPos, yPos, emoji_type){
 		fill(this.r, this.g, this.b);
 		noStroke();
 		// if (!this.toggleShape){
-		image(this.img, 0, 0, 70, 70);
+		image(this.img, 0, 0, emojiSize, emojiSize);
 		// }
 		// else{
 		// 	ellipse(0,0,this.d,this.d);

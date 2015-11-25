@@ -106,9 +106,14 @@ function getLowSurfacePoints(curWidth, curHeight){
 	return thePoints;
 }
 
+var emojiSize;
+var sizeFactor = 18;
+
 function setup(){
 	createCanvas(windowWidth, windowHeight);
 	background(0);
+
+	emojiSize = Math.round(windowWidth/sizeFactor);
 
 	// slider = createSlider(0, 100, 10);
   // slider.position(width/2 - 100, 10);
@@ -226,7 +231,7 @@ function draw(){
 		}
 	}
 
-	if (timer > 2500 && timer < 2800){
+	if (timer > 2400 && timer < 2700){
 		// Draw the low surface
 		if (showingDefault){
 			defaultSurface.killBody();
@@ -236,10 +241,11 @@ function draw(){
 		lowSurface.display();
 		timer++;
 	}
-	else if (timer > 2800){
+	else if (timer > 2700){
 		defaultSurface = new SurfaceShape(getDefaultSurfacePoints(windowWidth, windowHeight));
 		showingDefault = true;
 		//console.log("Stop showing low!");
+		emojiSize = Math.round(windowWidth/sizeFactor);
 		timer = 0;
 	}
 	else{
@@ -280,10 +286,11 @@ function mousePressed(){
 
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
+	
 	/*
 	defaultSurface.killBody();
 	defaultSurface = new SurfaceShape(getDefaultSurfacePoints(curWidth, curHeight));
 	lowSurface = new SurfaceShape(getLowSurfacePoints(curWidth, curHeight));
 	*/
-	timer = 1701;
+	timer = 2500;
 }
