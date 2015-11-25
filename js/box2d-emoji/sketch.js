@@ -39,13 +39,12 @@ function preload() {
 	beep_01.playMode('sustain');
 }
 
-
 var verticalWorld = true;
 var	hVal = 2;
 var	wVal = 2;
 
-var leftOffset = 45;
-var rightOffset = 28;
+var leftOffset = 70;
+var rightOffset = 0;
 
 function getDefaultSurfacePoints(curWidth, curHeight){
 	var thePoints = [];
@@ -109,11 +108,18 @@ function getLowSurfacePoints(curWidth, curHeight){
 var emojiSize;
 var sizeFactor = 18;
 
+var timeVal;
+var timeFactor;
+
 function setup(){
 	createCanvas(windowWidth, windowHeight);
 	background(0);
 
 	emojiSize = Math.round(windowWidth/sizeFactor);
+
+	timeVal = Math.round(2000 * 1440/windowWidth);
+	//console.log(timeVal);
+	timeFactor = 150;
 
 	// slider = createSlider(0, 100, 10);
   // slider.position(width/2 - 100, 10);
@@ -139,6 +145,7 @@ function setup(){
 var timer = 0;
 var elapsedTime = 0;
 var showingDefault = true;
+
 
 function draw(){
 	background(0);
@@ -231,7 +238,7 @@ function draw(){
 		}
 	}
 
-	if (timer > 2400 && timer < 2700){
+	if (timer > timeVal - timeFactor && timer < timeVal + timeFactor){
 		// Draw the low surface
 		if (showingDefault){
 			defaultSurface.killBody();
@@ -241,11 +248,12 @@ function draw(){
 		lowSurface.display();
 		timer++;
 	}
-	else if (timer > 2700){
+	else if (timer > timeVal + timeFactor){
 		defaultSurface = new SurfaceShape(getDefaultSurfacePoints(windowWidth, windowHeight));
 		showingDefault = true;
 		//console.log("Stop showing low!");
 		emojiSize = Math.round(windowWidth/sizeFactor);
+		timeVal = Math.round(2000 * 1440/windowWidth);
 		timer = 0;
 	}
 	else{
