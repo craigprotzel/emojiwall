@@ -75,7 +75,6 @@ function getDefaultSurfacePoints(curWidth, curHeight){
 	return thePoints;
 }
 
-
 function getLowSurfacePoints(curWidth, curHeight){
 	var thePoints = [];
 	if (verticalWorld){
@@ -145,7 +144,6 @@ function setup(){
 var timer = 0;
 var elapsedTime = 0;
 var showingDefault = true;
-
 
 function draw(){
 	background(0);
