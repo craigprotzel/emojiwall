@@ -11,7 +11,7 @@ var slider;
 var ghost_emoji, heart_emoji, sunglasses_emoji, thumb_emoji, cactus_emoji, umbrella_rain_emoji, earth_africa, face_with_tongue, pizza, chequered_flag, alien_emoji, angry_emoji, cat, dancer, dolphin, fire, ice_cream, purple_horns, top_hat, spouting_whale;
 
 //Sound
-var beep_01;
+// var beep_01;
 
 function preload() {
 	ghost_emoji = loadImage("media/ghost.png");
@@ -35,8 +35,8 @@ function preload() {
 	top_hat = loadImage("media/top_hat.png");
 	spouting_whale = loadImage("media/spouting_whale.png");
 
-	beep_01= loadSound('media/audio/beep_01.mp3');
-	beep_01.playMode('sustain');
+	// beep_01= loadSound('media/audio/beep_01.mp3');
+	// beep_01.playMode('sustain');
 }
 
 var verticalWorld = true;
@@ -105,16 +105,22 @@ function getLowSurfacePoints(curWidth, curHeight){
 }
 
 var emojiSize;
-var sizeFactor = 18;
+var sizeFactorNormal = 18;
+var sizeFactorSmall = 12;
 
 var timeVal;
 var timeFactor;
 
 function setup(){
 	createCanvas(windowWidth, windowHeight);
-	background(0);
+	background(255);
 
-	emojiSize = Math.round(windowWidth/sizeFactor);
+	if (windowWidth > 600){
+		emojiSize = Math.round(windowWidth/sizeFactorNormal);
+	}
+	else{
+		emojiSize = Math.round(windowWidth/sizeFactorSmall);	
+	}
 
 	timeVal = Math.round(2000 * 1440/windowWidth);
 	//console.log(timeVal);
@@ -138,7 +144,7 @@ function setup(){
 	//var lPoints = getLowSurfacePoints(windowWidth, windowHeight);
 	lowSurface = new SurfaceShape(getLowSurfacePoints(windowWidth, windowHeight));
 
-	beep_01.setVolume(0.5);
+	// beep_01.setVolume(0.5);
 }
  
 var timer = 0;
@@ -146,7 +152,7 @@ var elapsedTime = 0;
 var showingDefault = true;
 
 function draw(){
-	background(0);
+	background(255);
 	//Set up time
 	var timeStep = 1.0/30;
 	world.Step(timeStep,10,10);
@@ -293,10 +299,12 @@ function mousePressed(){
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 	
-	/*
 	defaultSurface.killBody();
-	defaultSurface = new SurfaceShape(getDefaultSurfacePoints(curWidth, curHeight));
-	lowSurface = new SurfaceShape(getLowSurfacePoints(curWidth, curHeight));
-	*/
+	lowSurface.killBody();
+	defaultSurface = new SurfaceShape(getDefaultSurfacePoints(windowWidth, windowHeight));
+	lowSurface = new SurfaceShape(getLowSurfacePoints(windowWidth, windowHeight));
+	
+	// emojiSize = Math.round(windowWidth/sizeFactor);
+
 	timer = 2500;
 }

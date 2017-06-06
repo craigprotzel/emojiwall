@@ -18,7 +18,7 @@ function Emoji(xPos, yPos, emoji_type){
 	this.img = emoji_type;
 
 	this.lifeTime = 0;
-	this.soundFX = beep_01;
+	// this.soundFX = beep_01;
 
 	//Define a body
 	var bd = new box2d.b2BodyDef();
