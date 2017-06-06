@@ -105,6 +105,7 @@ function getLowSurfacePoints(curWidth, curHeight){
 }
 
 var emojiSize;
+var sizeFactor;
 var sizeFactorNormal = 18;
 var sizeFactorSmall = 12;
 
@@ -116,11 +117,13 @@ function setup(){
 	background(255);
 
 	if (windowWidth > 600){
-		emojiSize = Math.round(windowWidth/sizeFactorNormal);
+		sizeFactor = sizeFactorNormal;
 	}
 	else{
-		emojiSize = Math.round(windowWidth/sizeFactorSmall);	
+		sizeFactor = sizeFactorSmall;
 	}
+
+	emojiSize = Math.round(windowWidth/sizeFactor);
 
 	timeVal = Math.round(2000 * 1440/windowWidth);
 	//console.log(timeVal);
